@@ -1,8 +1,16 @@
+import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:music_app/pages/home_page.dart';
 
-void main() {
+void main() async {
+  var audioHandler = await AudioService.init(
+    builder: () => MyAudioHandler(),
+    config: const AudioServiceConfig(
+      androidNotificationChannelName: 'Music App',
+      androidNotificationOngoing: true,
+    ),
+  );
+
   runApp(const MyApp());
 }
 
@@ -22,5 +30,23 @@ class MyApp extends StatelessWidget {
       ),
       home: const HomePage(),
     );
+  }
+}
+
+class MyAudioHandler extends BaseAudioHandler with QueueHandler, SeekHandler {
+  Future<void> play() async {
+
+  }
+
+  Future<void> pause() async {
+
+  }
+
+  Future<void> stop() async {
+
+  }
+
+  Future<void> seek(Duration position) async {
+
   }
 }
